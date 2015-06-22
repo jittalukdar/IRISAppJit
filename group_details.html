@@ -19,21 +19,18 @@
         <link type="text/css" rel="stylesheet" href="css/css/material-design-iconic-font.mine7ea.css?1422823240" />
         <link type="text/css" rel="stylesheet" href="css/rickshawd56b.css?1422823372" />
         <link type="text/css" rel="stylesheet" href="css/morris.core5e0a.css?1422823370" />
-        <link type="text/css" rel="stylesheet" href="css/dropzone-theme.css" />
-        <link type="text/css" rel="stylesheet" href="css/dropzone-theme.css" />
     </head>
 
-    <body class="menubar-hoverable header-fixed " onload="groupFunction();">
+    <body class="menubar-hoverable header-fixed " onload="groupPostFunctions();">
         <!-- BEGIN HEADER-->
         <header id="header" >
             <div class="headerbar"> 
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="headerbar-left">
                     <ul class="header-nav header-nav-options">
-
                         <li> <a class="btn btn-icon-toggle menubar-toggle" data-toggle="menubar" href="javascript:void(0);" id="picker"> <i class="fa fa-bars"></i> </a> </li>
                         <li class="header-nav-brand" >
-                            <div class="brand-holder"> <a href="dashboard.html"> <span class="text-lg text-bold text-primary">Groups</span> </a> </div>
+                            <div class="brand-holder"> <a href="dashboard.html"> <span class="text-lg text-bold text-primary">IRIS</span> </a> </div>
                         </li>
                     </ul>
                 </div>
@@ -202,92 +199,102 @@
             <!-- BEGIN CONTENT-->
             <div id="content">
                 <section>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card" style="margin-top: 30px;">
-                                <div class="card-head grouptab">
-                                    <ul data-toggle="tabs" class="nav nav-tabs nav-justified">
+                    <div class="section-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card style-default-bright">
+                                    <div class="card-head" style="min-height:66px;">
+                                        <header style="display:block;">
+                                            <div class="exploewsearch exploe2">
+                                                <input type="text" placeholder="Enter your keyword">
+                                                <a class="search" href="#">Post</a> <a class="cls" href="#"></a> </div>
 
-                                        <li class="active"><a href="#second4"><i class="fa  fa-globe"></i>PUBLIC GROUPS</a></li>
-                                        <li class=""><a href="#third4"><i class="fa fa-star"></i>MY GROUPS</a></li>
-                                        <li class=""><a href="#first4"><i class="fa  fa-plus"></i>CREATE GROUP</a></li>
-                                    </ul>
-                                </div><!--end .card-head -->
-                                <div class="card-body tab-content">
+                                        </header>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"> 
 
-                                    <div id="second4" class="tab-pane active">	
-                                        <div class="card-type-blog-masonry style-default-bright">
-                                            
-                                            <div id="groupsDisplay">
-                                                <!--end .col -->
+                            <!-- BEGIN SITE ACTIVITY -->
+                            <div class="col-md-12" id="groupDetails">
+<!--                                <div style="">
+                                <img src="img/loading.gif">-->
+<!--                                <div class="card feedbox">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="card-body">
+                                                <article class="style-default-bright">
+                                                    <div> <img alt="" src="img/modules/obama.png" class="img-responsive"> </div>
+                                                </article>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9 newsfeed newsfeed2 padright">
+                                            <div class="card-body">
+                                                <a href="postdetails.html">
+                                                    <h2>The best performing inestment under Obama.</h2>
+                                                    <div class="text-default-light">Posted by <span class="name_post">Daren Smith</span> <span class="post_time">Today at 10:00 am</span> <a href="#">2 comments <i class="fa fa-comment-o"></i></a></div>
+                                                    <p>President Obama on Tuesday said that the possibility of peace between the Israelis and the Palestinians seems “very dim” in the wake of comments Israeli Prime Minister Benjamin Netanyahu made before his reelection last week.<a href="postdetails.html" style="color:#0080db;">More...</a></p>
+                                                </a>
+                                                <hr>
+                                                
+                                                <h4 style="color:#0080db;">Comment <small>(<a href="postdetails.html">see all comments</a>)</small></h4>
+                                                <ul class="list-comments">
+                                                    <li>
+                                                        <div class="card">
+                                                            <div class="comment-avatar"><img src="img/modules/avatar4.jpg" alt=""></div>
+                                                            <div class="card-body">
 
-                                            </div><!--end .row -->
+                                                                <h4 class="comment-title">Jim Peters <small>20/06/2013 at 4:02 pm</small></h4>
+                                                                <p style="margin-bottom:0;">Etiam dui libero, tempor quis congue in, interdum eget tortor. Vivamus aliquam dictum lacus quis tincidunt.  <a href="#" style="color:#0080db;">More...</a></p>
+                                                            </div>
+                                                        </div> 
+                                                    </li>
+                                                     end comment 
+                                                    <li>
+                                                        <div class="card">
+                                                            <div class="comment-avatar"><img src="img/modules/avatar4.jpg" alt=""></div>
+                                                            <div class="card-body">
+                                                                <h4 class="comment-title">Carol	Sharp <small>20/06/2013 at 4:14 pm</small></h4>
+                                                                <p>Integer ac magna lacinia velit bibendum ornare. Morbi eget dui lectus, eget eleifend mi. Cum sociis <a href="#" style="color:#0080db;">More...</a></p>
+                                                            </div>
+                                                        </div>
 
+                                                    </li>
+                                                     end comment  
+                                                     end comment 
+                                                </ul>
+
+                                                <hr style="margin:0;">
+                                                
+                                                <div class="options2">
+                                                    <ul>
+                                                        <li><a title="" class="like active" href="#"> + 12</a> </li>
+                                                        <li><a title="" class="share" href="#"></a> </li>
+                                                        <li><a title="" class="bulb2" href="javascript:void(0);"></a> </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="options3">
+                                                    <ul>
+                                                        <li><a title="" class="list" href="docs_temp.html"></a> </li>
+                                                        <li><a title="" class="music" href="pdf_temp.html"></a> </li>
+                                                        <li><a title="" class="tv" href="ppt_temp.html"></a> </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
-                                    <div id="third4" class="tab-pane">						
-                                        <div class="card-type-blog-masonry style-default-bright">
-                                            <div class="row" id="groupsDisplayPrivate">
-
-                                            </div><!--end .row -->
-
-                                        </div>
-                                    </div>
-
-                                    <div id="first4" class="tab-pane">
-                                        <form role="form"  id="createGroupForm" class="dropzone dz-clickable form" onsubmit="return false;" >
-                                            <div class="form-group floating-label">
-                                                <input type="text" id="group_name" name="group_name" class="form-control">
-                                                <label for="regular2">Group Name</label>
-                                            </div>
-
-                                            <div class="form-group floating-label">
-                                                <textarea placeholder="" rows="3" class="form-control" id="group_content" name="group_content"></textarea>
-                                                <label for="textarea2">Group Content</label>
-                                            </div>
-                                            
-                                            <div class="form-group floating-label">
-                                                <div style="max-width: 640px; max-height: 426px;">
-                                                    <img id="imageGallery"/>
-                                                </div>
-                                            </div>
-
-                                            <div class="card-body no-padding">
-
-
-                                                <div class="dz-message">
-                                                    
-                                                    <h3 class="btn  btn-raised btn-success" style="margin:0;" id="btnGallery">Choose From Gallery</h3>
-                                                    <h3 class="btn  btn-raised btn-success" style="margin:0;" id="btnCamera">Take a Picture</h3>
-
-
-                                                </div>
-
-
-                                            </div>
-
-
-                                            <div class="col-sm-6 col-sm-offset-3">
-                                                <p>
-                                                    <input type="hidden" name="uid" id="uid"/>
-                                                    <input type="hidden" name="imageRaw" id="imageRaw"/>
-                                                    <button class="btn btn-block btn-primary btn-info btn-lg" type="button" onclick="createGroup();">CREATE GROUP</button>
-                                                </p>
-                                            </div>
-
-                                        </form>		
-                                    </div>
-                                </div><!--end .card-body -->
+                                </div>-->
+                                
+                                
+                                
+                                
                             </div>
                         </div>
                     </div>
-
-                    <!--end .section-body -->
-                </section>
             </div>
         </section>
-
     </div>
     <!--end #content--> 
     <!-- END CONTENT --> 
@@ -296,7 +303,7 @@
     <div id="menubar" class="menubar-inverse ">
         <div class="menubar-fixed-panel">
             <div> <a class="btn btn-icon-toggle btn-default menubar-toggle" data-toggle="menubar" href="javascript:void(0);" id="picker"> <i class="fa fa-bars"></i> </a> </div>
-            <div class="expanded"> <a href="dashboard.html"> <span class="text-lg text-bold text-primary ">iris</span> </a> </div>
+            <!--<div class="expanded"> <a href="dashboard.html"> <span class="text-lg text-bold text-primary ">iris</span> </a> </div>-->
         </div>
         <div class="menubar-scroll-panel"> 
             <!-- BEGIN MAIN MENU -->
@@ -366,7 +373,7 @@
                 <li> <a href="#">
                         <div class="gui-icon"><i class="md help"></i></div>
                         <span class="title">Help </span> </a> </li>
-                <li> <a href="#">
+                <li> <a href="login.html">
                         <div class="gui-icon"><i class="md logout"></i></div>
                         <span class="title">Logout</span> </a> </li>
             </ul>
@@ -378,9 +385,7 @@
         <!--end .menubar-scroll-panel--> 
     </div>
     <!--end #menubar--> 
-    <!-- END MENUBAR --> 
-
-
+    <!-- END MENUBAR -->
 
 </div>
 <!--end #base--> 
@@ -390,85 +395,98 @@
 
 <script src="js/modules/irisapp/libs/jquery/jquery-1.11.2.min.js"></script> 
 <script type="text/javascript">
-          $(document).ready(function () {
-              var html_body = '<div class="col-sm-12 col-md-12 col-lg-12">' +
-                      '<form>' +
-                      '<div class=" floating-label">' +
-                      '<input type="text" name="Subject1" id="Subject1" placeholder="Subject">' +
-                      '<label for="Subject1"></label>' +
-                      '</div>' +
-                      '<div class="">' +
-                      '<textarea name="textarea2" id="textarea2"  rows="3" placeholder="Write Text"></textarea>' +
-                      '<label for="textarea2"></label>' +
-                      '</div>' +
-                      '<div class="row">' +
-                      '<div class="col-xs-6 text-left">' +
-                      '</div>' +
-                      '<div class="col-xs-6 text-right">' +
-                      '<a class="btn btn-block btn-primary btn-info" type="submit" href="#" style="margin-bottom:20px;">Send</a>' +
-                      '</div>' +
-                      '</div>' +
-                      '</form>' +
-                      '</div>';
-              $('.exploe2').click(function () {
-                  // evt.preventDefault();
-                  $(this).unbind('click');
-                  //alert("ok");
-                  $(this).removeClass('exploe2');
-                  $(this).html(html_body);
+                $(document).ready(function () {
+                    var html_body = '<div class="col-sm-12 col-md-12 col-lg-12">' +
+                            '<form id="group_custom_post">' +
+                            '<div class=" floating-label">' +
+                            '<input type="text" name="post_title" id="post_title" placeholder="Subject">' +
+                            '<label for="Subject1"></label>' +
+                            '</div>' +
+                            '<div class="">' +
+                            '<textarea name="post_content" id="post_content"  rows="3" placeholder="Write Text"></textarea>' +
+                            '<label for="textarea2"></label>' +
+                            '</div>' +
+                            '<div class="row">' +
+                            '<div class="col-xs-4 text-left">' +
+                            '</div>' +
+                            '<div class="col-xs-4 text-right">' +
+                            '<a id="Cancel" class="btn btn-block ink-reaction btn-flat btn-primary active" type="submit" href="#" style="margin-bottom:20px;">Cancel</a>' +
+                            '</div>' +
+                            '<div class="col-xs-4 text-right">' +
+                            '<a onclick="customPost();" class="btn btn-block btn-primary btn-info" type="button" href="#" style="margin-bottom:20px;">Send</a>' +
+                            '</div>' +
+                            '</div>' +
+                            '</form>' +
+                            '</div>';
+                    var html_body_back = '<input type="text" placeholder="Enter your keyword">' +
+                            '<a class="search" href="#">Post</a> <a class="cls" href="#"></a>';
+                    $('.exploe2').live('click', function () {
+                        // evt.preventDefault();
+                        $(this).unbind('click');
+                        //alert("ok");
+                        $(this).removeClass('exploe2');
+                        $(this).html(html_body);
 
-              });
+                    });
+
+                    $('#Cancel').live('click', function () {
+                        triggerCancel();
+                    });
+                    function triggerCancel(){
+                        $('.exploewsearch').html(html_body_back);
+                        $('.exploewsearch').addClass('exploe2');
+                    }
 //        $('.bulb2').click(function(){
 //            $('.options3').css('display','none');
 //            $('.newsfeed').removeClass('padright');
 //        });
 
 //Take from here dated 15-06-2015-----//
-              function a() {
-                  //$("#menubar").show();
-                  //$('#base').css('padding-left','64px');     
-                  $('.options3').css('display', 'none');
-                  $('.newsfeed').removeClass('padright');
-              }
-              function b() {
-                  //$("#menubar").show();
-                  //$('#base').css('padding-left','64px');     
-                  $('.options3').css('display', 'block');
-                  $('.newsfeed').addClass('padright');
-              }
+                    function a() {
+                        //$("#menubar").show();
+                        //$('#base').css('padding-left','64px');     
+                        $('.options3').css('display', 'none');
+                        $('.newsfeed2').removeClass('padright');
+                    }
+                    function b() {
+                        //$("#menubar").show();
+                        //$('#base').css('padding-left','64px');     
+                        $('.options3').css('display', 'block');
+                        $('.newsfeed2').addClass('padright');
+                    }
 
-              $(".bulb2").click(function () {
-                  return (this.tog = !this.tog) ? a() : b();
-                  //e.stopPropagation();   
-              });
-              $('#picker').click(function () {
-                  return (this.tog = !this.tog) ? c() : d();
-              });
-              function c() {
-                  $("#menubar").show();
-                  $('#base').css('padding-left', '240px');
-              }
-              function d() {
-                  $("#menubar").show();
-                  $('#base').css('padding-left', '64px');
-              }
+                    $(".bulb2").click(function () {
+                        return (this.tog = !this.tog) ? a() : b();
+                        //e.stopPropagation();   
+                    });
+                    $('#picker').click(function () {
+                        return (this.tog = !this.tog) ? c() : d();
+                    });
+                    function c() {
+                        $("#menubar").show();
+                        $('#base').css('padding-left', '240px');
+                    }
+                    function d() {
+                        $("#menubar").show();
+                        $('#base').css('padding-left', '64px');
+                    }
 //Hide & show menu left
-              $('#picker,.bulb2').on('click', function (e) {
-                  // $("#menubar").show();
-                  // $('#base').css('padding-left','240px');
-                  e.stopPropagation();
+                    $('#picker,.bulb2').on('click', function (e) {
+                        // $("#menubar").show();
+                        // $('#base').css('padding-left','240px');
+                        e.stopPropagation();
 
-              });
+                    });
 
-              $(document).on('click', function (e) {
-                  // Do whatever you want; the event that'd fire if the "special" element has been clicked on has been cancelled.
-                  $("#menubar").hide();
-                  $('#base').css('padding-left', '0');
-              });
+                    $(document).on('click', function (e) {
+                        // Do whatever you want; the event that'd fire if the "special" element has been clicked on has been cancelled.
+                        $("#menubar").hide();
+                        $('#base').css('padding-left', '0');
+                    });
 
 //End here dated 15-06-2015-----//
 
-          });
+                });
 </script>
 <script src="phonegap.js"></script>
 <script src="js/modules/irisapp/libs/jquery/jquery-migrate-1.2.1.min.js"></script> 
@@ -485,8 +503,8 @@
 <script src="js/modules/irisapp/core/cache/63d0445130d69b2868a8d28c93309746.js"></script> 
 <script src="js/modules/irisapp/core/demo/Demo.js"></script> 
 <script src="js/modules/irisapp/core/demo/DemoDashboard.js"></script> 
-<script src="js/dropzone.min.js"></script>
-<script src="js/apicall.js"></script>
+<script defer src="js/apicall.js"></script>
+
 
 <!-- END JAVASCRIPT -->
 

@@ -1,6 +1,8 @@
-var BASE_URL = "http://localhost/iris/dev/";
-//var BASE_URL = "http://dev.wrctechnologies.com/irisdesign/dev/";
+//var BASE_URL = "http://localhost/iris/dev/";
+var BASE_URL = "http://dev.wrctechnologies.com/irisdesign/dev/";
 
+var html_body_back = '<input type="text" placeholder="Enter your keyword">' +
+        '<a class="search" href="#">Post</a> <a class="cls" href="#"></a>';
 // Regular Expression for Email.
 var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 $(window).load(function () {
@@ -271,10 +273,10 @@ function groupFunction() {
     $(window).bind('deviceready load', function () {
         fetchPublicGroups();
         fetchPrivateGroups();
-        $("#btnCamera").bind("touchstart click",function(){
+        $("#btnCamera").bind("touchstart click", function () {
             getPictureFromCamera();
         });
-        $("#btnGallery").bind("touchstart click",function(){
+        $("#btnGallery").bind("touchstart click", function () {
             getPictureFromGallery();
         });
     });
@@ -319,9 +321,9 @@ function fetchPublicGroups() {
             console.log(resp);
             var data = $.parseJSON(resp);
             var groupListAppend = "";
-            var j=1;
+            var j = 1;
             for (var i = 0; i < data.length; i++) {
-                groupListAppend += constructGroupList(j,data[i].group_name, data[i].group_content,data[i].group_image);
+                groupListAppend += constructGroupList(j, data[i].group_id, data[i].group_name, data[i].group_content, data[i].group_image);
                 j++;
             }
             $("#groupsDisplay").append(groupListAppend);
@@ -337,25 +339,25 @@ function fetchPrivateGroups() {
             console.log(resp);
             var data = $.parseJSON(resp);
             var groupListAppend = "";
-            var j=1;
+            var j = 1;
             for (var i = 0; i < data.length; i++) {
-                groupListAppend += constructGroupList(j,data[i].group_name, data[i].group_content,data[i].group_image);
+                groupListAppend += constructGroupList(j, data[i].group_id, data[i].group_name, data[i].group_content, data[i].group_image);
                 j++;
             }
             $("#groupsDisplayPrivate").append(groupListAppend);
         }
     });
 }
-function constructGroupList(i,groupName, groupContent, groupImage) {
+function constructGroupList(i, group_id, groupName, groupContent, groupImage) {
     var div = "";
-    if(i==1){
+    if (i == 1) {
         div += '<div class="row">';
     }
     div += '<div class="col-md-4">' +
             '<article>' +
             '<header>' + groupName + '</header>' +
             '<div class="blog-image">' +
-            '<img alt="" src="data:image/jpeg;base64,'+groupImage+'" class="img-responsive">' +
+            '<a href="javascript:void();" onclick="viewGroupDetails(' + group_id + ')"><img alt="" src="data:image/jpeg;base64,' + groupImage + '" class="img-responsive">' +
             '<div class="row text-center groupbtn">' +
             '<div class="col-sm-4"><a href="#" class="groupsbtn">FOLLOW</a></div>' +
             '<div class="col-sm-4"><a href="#" class="groupsbtn">JOIN</a></div>' +
@@ -367,13 +369,122 @@ function constructGroupList(i,groupName, groupContent, groupImage) {
             '</div>' +
             '</article>' +
             '</div>';
-    if(i%3==0){
+    if (i % 3 == 0) {
         div += '</div>';
         div += '<div class="row">';
     }
     return div;
 }
+function viewGroupDetails(group_id) {
+    sessionStorage.setItem("gid", group_id);
+    location.href = "group_details.html";
+}
 // GROUP FUNCTONS
+
+// GROUP POST FUNCTIONS
+function groupPostFunctions() {
+    fetchCustomGroupPost();
+}
+function customPost() {
+    var post_title = $("#post_title").val();
+    var post_content = $("#post_content").val();
+    $.ajax({
+        url: BASE_URL + 'api/customUserPost',
+        type: 'POST',
+        dataType: 'JSON',
+        async: true,
+        data: {
+            post_title: post_title,
+            post_content: post_content,
+            group_id: sessionStorage.getItem("gid"),
+            user_id: sessionStorage.getItem("uid")
+        },
+        success: function (resp) {
+            //alert(resp);
+            $('.exploewsearch').html(html_body_back);
+            $('.exploewsearch').addClass('exploe2');
+            $("#post_title").val("");
+            $("#post_content").val("");
+            fetchCustomGroupPost();
+        }
+    });
+}
+function fetchCustomGroupPost() {
+    $.ajax({
+        url: BASE_URL + 'api/fetchCustomGroupPosts',
+        type: 'POST',
+        dataType: 'JSON',
+        async: true,
+        data: {
+            group_id: sessionStorage.getItem("gid"),
+            user_id: sessionStorage.getItem("uid")
+        },
+        success: function (resp) {
+            for (var i = 0; i < resp.length; i++) {
+                $("#groupDetails").prepend(constructGroupDetailsDiv(i, resp[i].feed_title, resp[i].feed_desc, resp[i].user_name, resp[i].feed_date, resp[i].comment_count, resp[i].likes, resp[i].comment)).fadeIn("slow");
+            }
+        }
+    });
+}
+function constructGroupDetailsDiv(i, feedTitle, feedDesc, fullName, feedDate, commentCount, likesCount, comments) {
+    var html = "";
+    html += '<div class="card feedbox">' +
+            '<div class="row">' +
+            '<div class="col-md-3">' +
+            '<div class="card-body">' +
+            '<article class="style-default-bright">' +
+            '<div> <img alt="" src="img/modules/obama.png" class="img-responsive"> </div>' +
+            '</article>' +
+            '</div>' +
+            '</div>' +
+            '<div class="col-md-9 newsfeed newsfeed2 padright" id="newsfeed' + i + '">' +
+            '<div class="card-body">' +
+            '<a href="#">' +
+            '<h2>' + feedTitle + '</h2>' +
+            '<div class="text-default-light">Posted by <span class="name_post">' + fullName + '</span> <span class="post_time">' + feedDate + '</span> <a href="#">' + commentCount + ' comments <i class="fa fa-comment-o"></i></a></div>' +
+            '<p id="desc' + i + '">' + feedDesc + '</p>' +
+            '</a>';
+    if (commentCount > 0) {
+        html += '<hr>' +
+                '<h4 style="color:#0080db;">Comment <small>(<a href="postdetails.html">see all comments</a>)</small></h4>' +
+                '<ul class="list-comments">';
+        for (var j = 0; j < comments.length; j++) {
+            html += '<li>' +
+                    '<div class="card">' +
+                    '<div class="comment-avatar"><img src="img/modules/avatar4.jpg" alt=""></div>' +
+                    '<div class="card-body">' +
+                    '<h4 class="comment-title">' + comments[j].fullname + '<small>' + comments[j].feed_date + ' at ' + comments[j].feed_time + '</small></h4>' +
+                    '<p style="margin-bottom:0;">' + comments[j].feed_comment + '</p>' +
+                    '</div>' +
+                    '</div>' +
+                    '</li>';
+        }
+        html += '</ul>';
+    }
+    html += '<hr style="margin:0;">' +
+            '<div class="options2">' +
+            '<ul>' +
+            '<li><a title="" class="like active" href="#"> + ' + likesCount + '</a> </li>' +
+            '<li><a title="" class="share" href="#"></a> </li>' +
+            '<li><a id="bulb' + i + '" class="bulb2" href="javascript:void(0);" onclick="hideOptions(' + i + ')"></a> </li>' +
+            '</ul>' +
+            '</div>' +
+            '<div class="options3" id="options' + i + '">' +
+            '<ul>' +
+            '<li><a title="" class="list" href="docs_temp.html"></a> </li>' +
+            '<li><a title="" class="music" href="pdf_temp.html"></a> </li>' +
+            '<li><a title="" class="tv" href="ppt_temp.html"></a> </li>' +
+            '</ul>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+    return html;
+
+}
+// GROUP POST FUNCTIONS
+
 // COMMON FUNCTIONS
 function checkUserSession() {
     if (null != sessionStorage.getItem("uid")) {
@@ -386,7 +497,18 @@ function logout() {
     sessionStorage.clear();
     location.href = "index.html";
 }
-
+function hideOptions(id) {
+    $('#options' + id).css('display', 'none');
+    $('#newsfeed' + id).removeClass('padright');
+    $("#bulb" + id).removeAttr("onclick");
+    $("#bulb" + id).attr("onclick", "showOptions(" + id + ")");
+}
+function showOptions(id) {
+    $('#options' + id).css('display', 'block');
+    $('#newsfeed' + id).addClass('padright');
+    $("#bulb" + id).removeAttr("onclick");
+    $("#bulb" + id).attr("onclick", "hideOptions(" + id + ")");
+}
 function checkUniqueEmail(email) {
     $.ajax({
         url: BASE_URL + 'api/checkUniqueEmail',
@@ -405,18 +527,18 @@ function checkUniqueEmail(email) {
 
 // IMAGE UPLOAD ON IOS
 function getPictureFromCamera() {
-   // var imageData;
+    // var imageData;
     navigator.camera.getPicture(function (data) {
-         $("#imageGallery")
-                    .attr('src','data:image/jpeg;base64,'+data)
-                    .css("display","block");
-         $("#imageRaw").val(data);
+        $("#imageGallery")
+                .attr('src', 'data:image/jpeg;base64,' + data)
+                .css("display", "block");
+        $("#imageRaw").val(data);
     }, function (error) {
         console.log("Error " + error);
     }, {
         destinationType: Camera.DestinationType.DATA_URL,
         sourceType: Camera.PictureSourceType.CAMERA,
-        allowEdit: false,
+        allowEdit: true,
         targetWidth: 640,
         targetHeight: 426
     });
@@ -425,15 +547,15 @@ function getPictureFromCamera() {
 function getPictureFromGallery() {
     navigator.camera.getPicture(function (data) {
         $("#imageGallery")
-                    .attr('src','data:image/jpeg;base64,'+data)
-                    .css("display","block");
-         $("#imageRaw").val(data);
+                .attr('src', 'data:image/jpeg;base64,' + data)
+                .css("display", "block");
+        $("#imageRaw").val(data);
     }, function (error) {
         console.log("Error " + error);
     }, {
         destinationType: Camera.DestinationType.DATA_URL,
         sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-        allowEdit: false,
+        allowEdit: true,
         targetWidth: 640,
         targetHeight: 426,
         mediaType: Camera.MediaType.PICTURE
